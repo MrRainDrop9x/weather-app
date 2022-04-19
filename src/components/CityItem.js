@@ -10,6 +10,7 @@ import {useGlobalContext} from '../../globalContext';
 import WTHourItem from '../components/WTHourItem';
 import WeatherDayItem from './WeatherDayItem';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import DetailWeather from './DetailWeather';
 const WeatherIcon = weatherType => {
   if (weatherType === 'Sunny') {
     return <SunIcon width={34} height={34} fill="#fff" />;
@@ -73,67 +74,12 @@ const CityItem = ({location, bgImg}) => {
                 </View>
               </View>
             </View>
-            <View
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                marginTop: 10,
-                marginLeft: 5,
-              }}>
-              <Text
-                style={{
-                  fontFamily: 'Lato-Regular',
-                  color: 'white',
-                  fontSize: 15,
-                }}>{`10/3\u2103`}</Text>
-              <Text
-                style={{
-                  color: 'white',
-                  marginLeft: 10,
-                  fontWeight: 'bold',
-                  fontSize: 15,
-                }}>
-                Chủ Nhật
-              </Text>
-            </View>
+
             <View style={styles.bottomInfoWrapper}>
-              <FlatList
-                data={weatherHourly}
-                renderItem={renderWeatherHourItem}
-                horizontal
-                nestedScrollEnabled={true}></FlatList>
-              {/* <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                style={styles.scrollViewH}>
-                {weatherHourly.map(
-                  (item, index) =>
-                    index < 12 && (
-                      <WTHourItem
-                        key={index}
-                        temperature={roundTemp(item.temp)}
-                        hour={dtToHour(
-                          item.dt,
-                          weatherCityCurrent.timezoneCity,
-                        )}
-                        img={item.weather[0].icon}
-                      />
-                    ),
-                )}
-              </ScrollView> */}
+              <DetailWeather location={location} />
             </View>
           </View>
         </ImageBackground>
-      </View>
-
-      {/* Report weather 7 days */}
-      <View>
-        <View>
-          <Text>Báo cáo thời tiết 7 ngày</Text>
-        </View>
-        <View>
-          <WeatherDayItem />
-        </View>
       </View>
     </ScrollView>
   );

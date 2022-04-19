@@ -86,6 +86,10 @@ export default function Home({navigation}) {
             wind: json?.wind?.speed,
             rain: 50,
             humidity: json?.main?.humidity,
+            visibility: json?.visibility,
+            windSpeed: json?.wind?.speed,
+            humidity: json?.main?.humidity,
+            pressure: json?.main.pressure,
           },
         ]);
       };
