@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "422890339883",
+    "project_id": "thoi-tiet-app",
+    "storage_bucket": "thoi-tiet-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422890339883:android:3de1356e8416d21890b46e",
+        "android_client_info": {
+          "package_name": "com.weather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "422890339883-dvkh6gusoh6fn8gbrvme2944mb81lc67.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoIEmliyVNqms867yE3fk-kxKIiD1W-Mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "422890339883-dvkh6gusoh6fn8gbrvme2944mb81lc67.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
