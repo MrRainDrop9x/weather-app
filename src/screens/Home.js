@@ -9,10 +9,7 @@ import {
   Animated,
   LogBox,
 } from 'react-native';
-import SunIcon from '../../assets/sun.svg';
-import CloudIcon from '../../assets/cloudy.svg';
-import MoonIcon from '../../assets/moon.svg';
-import RainIcon from '../../assets/rain.svg';
+
 import MenuIcon from '../../assets//menu.svg';
 import SearchIcon from '../../assets/search.svg';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
@@ -21,21 +18,8 @@ import {useRef, useEffect} from 'react';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
 import firestore from '@react-native-firebase/firestore';
 import {ScrollView} from 'react-native-gesture-handler';
-const WeatherIcon = weatherType => {
-  if (weatherType === 'Sunny') {
-    return <SunIcon width={34} height={34} fill="#fff" />;
-  }
-  if (weatherType === 'Rainy') {
-    return <RainIcon width={34} height={34} fill="#fff" />;
-  }
-  if (weatherType === 'Cloudy') {
-    return <CloudIcon width={34} height={34} fill="#fff" />;
-  }
-  if (weatherType === 'Night') {
-    return <MoonIcon width={34} height={34} fill="#fff" />;
-  }
-};
 import CityItem from '../components/CityItem';
+import Loading from './Loading';
 import {useGlobalContext} from '../../globalContext';
 
 export default function Home({navigation}) {
@@ -46,6 +30,8 @@ export default function Home({navigation}) {
     locations,
     setLocations,
     roundTemp,
+    isLoading,
+    setIsLoading,
   } = useGlobalContext();
 
   //get tracked city from firestore
@@ -96,7 +82,10 @@ export default function Home({navigation}) {
 
       fetchData()
         // make sure to catch any error
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => {
+          setIsLoading(false);
+        });
     });
   }, [trackedCityList]);
 
@@ -115,6 +104,9 @@ export default function Home({navigation}) {
 
   const {width: windowWidth, height: windowHeight} = useWindowDimensions();
   const scrollX = useRef(new Animated.Value(0)).current;
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <>
       <StatusBar barStyle="light-content" />

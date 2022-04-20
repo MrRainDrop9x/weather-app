@@ -107,6 +107,8 @@ function AppProvider({children}) {
 
   const [nameCityCurrent, setNameCityCurrent] = useState({});
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const url = `${api.baseUrl}/weather?q=${nameCityCurrent?.nameCity}&units=metric&appid=${api.key}&lang=vi`;
     fetch(url)
@@ -180,6 +182,9 @@ function AppProvider({children}) {
     dtToHour,
     dtToDayMonthDaily,
     roundTempAfterComma,
+
+    isLoading,
+    setIsLoading,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
