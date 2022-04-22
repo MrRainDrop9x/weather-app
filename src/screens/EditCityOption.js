@@ -5,27 +5,44 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React, {useState, useCallback} from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, {useState} from 'react';
 import TagEditCity from '../components/TagEditCity';
+import {useGlobalContext} from '../../globalContext';
+import firestore from "@react-native-firebase/firestore";
 
 export default function EditCityOption({navigation}) {
   const goListCity = () => {
     navigation.navigate('ListCity');
+
+    citiesVietNam.forEach(city => {
+      if (city.checked) {
+        firestore().collection('weatherCurrent')
+          .doc(city.id)
+          .delete();
+        // console.log(city);
+      }
+    })
+
+    setCitiesVietNam(
+      citiesVietNam.map(city => ({...city, checked: false})),
+    );
   };
 
-  const [citiesVietNam, setCitiesVietNam] = useState([
-    {name: 'Hà Nội', checked: false},
-    {name: 'Cần Thơ', checked: false},
-    {name: 'Đà Nẵng', checked: false},
-    {name: 'Hải Phòng', checked: false},
-    {name: 'Tp Hồ Chí Minh', checked: false},
-  ]);
+  const {trackedCityList} = useGlobalContext();
+
+  const initCities = trackedCityList.map(item => ({
+    id: item.id,
+    name: item.nameCity,
+    checked: false,
+  }));
+
+  const [citiesVietNam, setCitiesVietNam] = useState(initCities);
 
   const checkAll = () => {
-    setCitiesVietNam(citiesVietNam.map(city => ({name: city.name, checked: true})));
-    console.log(citiesVietNam.map(city => ({name: city.name, checked: true})));
-  };
+    setCitiesVietNam(
+      citiesVietNam.map(city => ({...city, checked: true})),
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -43,8 +60,11 @@ export default function EditCityOption({navigation}) {
         {citiesVietNam.map((city, index) => (
           <TagEditCity
             key={index}
-            nameCity={city.name}
-            checked={city.checked}
+            id={city?.id}
+            nameCity={city?.name}
+            checked={city?.checked}
+            citiesVietNam={citiesVietNam}
+            changeValue={setCitiesVietNam}
           />
         ))}
       </ScrollView>

@@ -1,18 +1,40 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import CheckBox from '@react-native-community/checkbox';
+import CheckBox from 'react-native-check-box';
 import {useState} from 'react';
 
-export default function TagEditCity({nameCity, checked}) {
-  const [isSelected, setSelection] = useState(checked);
+export default function TagEditCity({
+  id,
+  nameCity,
+  checked,
+  citiesVietNam,
+  changeValue,
+}) {
+  // const { id, nameCity, checked } = city;
+
+  const [check, setCheck] = useState(checked);
+  // let check = citiesVietNam.find(city => city?.id === id)[0]?.;
+
+  const handleChecked = () => {
+    changeValue(citiesVietNam.map(city => {
+      if (city?.id === id) {
+        return {...city, checked: !check}
+      }
+      return {...city}
+    }));
+
+    setCheck(!check);
+
+    // console.log(citiesVietNam);
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{nameCity}</Text>
       <CheckBox
-        value={isSelected}
-        onValueChange={setSelection}
         style={styles.checkbox}
+        onClick={() => handleChecked()}
+        isChecked={check}
       />
     </View>
   );
@@ -20,10 +42,10 @@ export default function TagEditCity({nameCity, checked}) {
 
 const styles = StyleSheet.create({
   container: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   text: {
     fontSize: 18,

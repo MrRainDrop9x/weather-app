@@ -1,7 +1,9 @@
 import {StyleSheet, Text, View, TouchableOpacity, LogBox} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CityOfList from '../components/CityOfList';
+import {useGlobalContext} from '../../globalContext';
+
 
 export default function ListCity({navigation}) {
   LogBox.ignoreLogs(['ViewPropTypes will be removed from React Native']);
@@ -9,6 +11,10 @@ export default function ListCity({navigation}) {
   LogBox.ignoreLogs(['EdgeInsetsPropType will be removed from React Native']);
   LogBox.ignoreLogs(['PointPropType will be removed from React Native.']);
 
+  const {locations} = useGlobalContext();
+
+  // locations
+  // const [currentCities, setCurrentCities] = useState
   const currentCities = [
     {
       name: 'Nam Từ Liêm',
@@ -27,6 +33,7 @@ export default function ListCity({navigation}) {
       desc: 'Trời quang',
     },
   ];
+
 
   const backHome = () => {
     navigation.navigate('Home');
@@ -61,13 +68,13 @@ export default function ListCity({navigation}) {
       </View>
 
       <View>
-        {currentCities.map((city, index) => (
+        {locations.map((city, index) => (
           <CityOfList
             key={index}
-            nameCity={city.name}
-            temp={city.temp}
-            description={city.desc}
-            present={city?.present}
+            nameCity={city.city}
+            temp={city.temparature}
+            description={city.weatherDes}
+            handleFunc={backHome}
           />
         ))}
       </View>

@@ -42,7 +42,7 @@ export default function Home({navigation}) {
       .onSnapshot(snapshot => {
         setTrackedCityList(
           snapshot.docs.map(doc => {
-            return doc.data().nameCity;
+            return {nameCity: doc.data().nameCity, id: doc.id};
           }),
         );
       });
@@ -52,14 +52,18 @@ export default function Home({navigation}) {
   }, []);
 
   useEffect(() => {
-    trackedCityList.map((nameCity, index) => {
-      const url = `${api.baseUrl}/weather?q=${nameCity}&units=metric&appid=${api.key}&lang=vi`;
+    setLocations([]);
+
+    trackedCityList.map((city, index) => {
+      const url = `${api.baseUrl}/weather?q=${city.nameCity}&units=metric&appid=${api.key}&lang=vi`;
       // console.log(url);
       const fetchData = async () => {
         // get the data from the api
         const data = await fetch(url);
         // convert data to json
         const json = await data.json();
+
+        console.log(json);
         setLocations(locations => [
           ...locations,
           {

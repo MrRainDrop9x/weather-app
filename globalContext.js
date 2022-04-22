@@ -109,42 +109,42 @@ function AppProvider({children}) {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const url = `${api.baseUrl}/weather?q=${nameCityCurrent?.nameCity}&units=metric&appid=${api.key}&lang=vi`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        setWeatherCityCurrent({
-          cod: data.cod,
-          nameCity: data.cod === 200 ? data.name : '',
-          dt: data?.dt,
-          temperature: roundTemp(data?.main?.temp),
-          description: data.cod === 200 ? data?.weather[0].description : '',
-          wind: ms2kmhWind(data?.wind?.speed),
-          hum: data?.main?.humidity,
-          imgWeather:
-            data.cod === 200
-              ? `http://openweathermap.org/img/wn/${data?.weather[0]?.icon}@4x.png`
-              : '',
-          lon: data.cod === 200 ? data?.coord?.lon : 0,
-          lat: data.cod === 200 ? data?.coord?.lat : 0,
-          timezoneCity: data?.timezone,
-        });
-      });
+  // useEffect(() => {
+  //   const url = `${api.baseUrl}/weather?q=${nameCityCurrent?.nameCity}&units=metric&appid=${api.key}&lang=vi`;
+  //   fetch(url)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setWeatherCityCurrent({
+  //         cod: data.cod,
+  //         nameCity: data.cod === 200 ? data.name : '',
+  //         dt: data?.dt,
+  //         temperature: roundTemp(data?.main?.temp),
+  //         description: data.cod === 200 ? data?.weather[0].description : '',
+  //         wind: ms2kmhWind(data?.wind?.speed),
+  //         hum: data?.main?.humidity,
+  //         imgWeather:
+  //           data.cod === 200
+  //             ? `http://openweathermap.org/img/wn/${data?.weather[0]?.icon}@4x.png`
+  //             : '',
+  //         lon: data.cod === 200 ? data?.coord?.lon : 0,
+  //         lat: data.cod === 200 ? data?.coord?.lat : 0,
+  //         timezoneCity: data?.timezone,
+  //       });
+  //     });
 
-    console.log('Hello H');
-  }, [api.baseUrl, api.key, nameCityCurrent]);
+  //   console.log('Hello H');
+  // }, [api.baseUrl, api.key, nameCityCurrent]);
 
-  useEffect(() => {
-    fetch(
-      `${api.baseUrl}/onecall?lat=${weatherCityCurrent?.lat}&lon=${weatherCityCurrent?.lon}&units=metric&appid=${api.key}`,
-    )
-      .then(response => response.json())
-      .then(data => {
-        setWeatherHourly(data?.hourly);
-        setWeatherDaily(data?.daily);
-      });
-  }, [api.baseUrl, api.key, weatherCityCurrent]);
+  // useEffect(() => {
+  //   fetch(
+  //     `${api.baseUrl}/onecall?lat=${weatherCityCurrent?.lat}&lon=${weatherCityCurrent?.lon}&units=metric&appid=${api.key}`,
+  //   )
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setWeatherHourly(data?.hourly);
+  //       setWeatherDaily(data?.daily);
+  //     });
+  // }, [api.baseUrl, api.key, weatherCityCurrent]);
 
   const [trackedCityList, setTrackedCityList] = useState([]);
 
