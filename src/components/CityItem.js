@@ -70,7 +70,9 @@ const CityItem = ({location, bgImg}) => {
                   <Text style={styles.temparature}>{location.temparature}</Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <Text style={styles.weatherDes}>U Am</Text>
+                  <Text style={styles.weatherDes} numberOfLines={2}>
+                    {location.weatherDes}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontFamily: 'Lato-Regular',
     fontWeight: 'bold',
-    fontSize: 25,
+    fontSize: 20,
     lineHeight: 34,
     textAlign: 'right',
   },

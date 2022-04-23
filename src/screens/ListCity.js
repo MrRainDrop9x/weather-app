@@ -4,7 +4,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import CityOfList from '../components/CityOfList';
 import {useGlobalContext} from '../../globalContext';
 
-
 export default function ListCity({navigation}) {
   LogBox.ignoreLogs(['ViewPropTypes will be removed from React Native']);
   LogBox.ignoreLogs(['ColorPropType will be removed from React Native']);
@@ -34,10 +33,9 @@ export default function ListCity({navigation}) {
     },
   ];
 
-
   const backHome = () => {
     navigation.navigate('Home');
-  }
+  };
 
   const goAddCityOption = () => {
     navigation.navigate('AddCityOption');
@@ -52,22 +50,28 @@ export default function ListCity({navigation}) {
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <TouchableOpacity activeOpacity={0.8} onPress={backHome}>
-            <AntDesign name="arrowleft" size={30} color="#0969da" />
+            <AntDesign name="arrowleft" size={22} color="#0969da" />
           </TouchableOpacity>
           <Text style={styles.title}>Thêm thành phố</Text>
         </View>
 
         <View style={styles.headerRight}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.icon} onPress={goAddCityOption}>
-            <AntDesign name="pluscircleo" size={30} color="#0969da" />
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.icon}
+            onPress={goAddCityOption}>
+            <AntDesign name="plus" size={22} color="#0969da" />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.icon} onPress={goEditCityOption}>
-            <AntDesign name="edit" size={30} color="#0969da" />
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={styles.icon}
+            onPress={goEditCityOption}>
+            <AntDesign name="edit" size={22} color="#0969da" />
           </TouchableOpacity>
         </View>
       </View>
 
-      <View>
+      <View style={{marginTop: 10}}>
         {locations.map((city, index) => (
           <CityOfList
             key={index}
@@ -99,10 +103,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-      fontSize: 18,
-      marginLeft: 8,
-      color: '#000',
-      fontWeight: '600',
+    fontSize: 18,
+    marginLeft: 10,
+    color: '#000',
+    fontWeight: '500',
   },
   headerRight: {
     display: 'flex',

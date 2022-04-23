@@ -3,7 +3,13 @@ import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function CityOfList({nameCity, temp, description, present, handleFunc}) {
+export default function CityOfList({
+  nameCity,
+  temp,
+  description,
+  present,
+  handleFunc,
+}) {
   return (
     <TouchableOpacity onPress={handleFunc}>
       <View style={styles.container}>
@@ -18,7 +24,11 @@ export default function CityOfList({nameCity, temp, description, present, handle
           </View>
           <View style={styles.boxRight}>
             <Text style={styles.text}>{`${temp}`}</Text>
-            <Text style={styles.textDes}>{description.length > 12 ? `${description.slice(0, 12)}...` : description}</Text>
+            <Text style={styles.textDes}>
+              {description.length > 12
+                ? `${description.slice(0, 12)}...`
+                : description}
+            </Text>
           </View>
         </LinearGradient>
       </View>
@@ -34,15 +44,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ccc',
     borderWidth: 0,
-    borderRadius: 18,
-    marginBottom: 8,
+    borderRadius: 15,
+    marginBottom: 10,
     overflow: 'hidden',
   },
   linearGradient: {
     flex: 1,
     paddingHorizontal: 18,
-    paddingVertical: 12,
-    borderRadius: 18,
+    paddingVertical: 25,
+    borderRadius: 15,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -66,9 +76,11 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ebeef1',
+    fontSize: 20,
   },
   textDes: {
     color: '#ebeef1',
     textTransform: 'capitalize',
-  }
+    fontWeight: '300',
+  },
 });

@@ -15,18 +15,28 @@ function AppProvider({children}) {
   };
 
   const monthNamesEng = [
-    'January',
-    'February',
-    'March',
-    'April',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
     'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const daysEng = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
   ];
 
   const monthNames = [
@@ -56,32 +66,16 @@ function AppProvider({children}) {
     return Math.round(temp * 10) / 10;
   };
 
-  const dtToDayMonth = (dt, timezoneCity) => {
+  //convert fomat time
+  const convertTime = (dt, timezoneCity) => {
     const time = new Date(
       new Date(dt * 1000) - (timeZone - timezoneCity) * 1000,
     );
-
-    const dTime = time.getDate() < 10 ? `0${time.getDate()}` : time.getDate();
-
-    return `${dTime} ${monthNames[time.getMonth()]}`;
-  };
-
-  const dtToDayMonthDaily = (dt, timezoneCity) => {
-    const time = new Date(
-      new Date(dt * 1000) - (timeZone - timezoneCity) * 1000,
-    );
-
-    const dTime = time.getDate() < 10 ? `0${time.getDate()}` : time.getDate();
-
-    return `${monthNames[time.getMonth()]}, ${dTime}`;
-  };
-
-  const dtToHour = (dt, timezoneCity) => {
-    const time = new Date(
-      new Date(dt * 1000) - (timeZone - timezoneCity) * 1000,
-    );
-    const hour = time.getHours() > 9 ? time.getHours() : `0${time.getHours()}`;
-    return `${hour}.00`;
+    return `${time.getHours()}:${time.getMinutes()} - ${
+      daysEng[time.getDay()]
+    }, ${time.getDate()} ${
+      monthNamesEng[time.getMonth()]
+    } ${time.getFullYear()}`;
   };
 
   const [input, setInput] = useState('');
@@ -108,43 +102,6 @@ function AppProvider({children}) {
   const [nameCityCurrent, setNameCityCurrent] = useState({});
 
   const [isLoading, setIsLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const url = `${api.baseUrl}/weather?q=${nameCityCurrent?.nameCity}&units=metric&appid=${api.key}&lang=vi`;
-  //   fetch(url)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setWeatherCityCurrent({
-  //         cod: data.cod,
-  //         nameCity: data.cod === 200 ? data.name : '',
-  //         dt: data?.dt,
-  //         temperature: roundTemp(data?.main?.temp),
-  //         description: data.cod === 200 ? data?.weather[0].description : '',
-  //         wind: ms2kmhWind(data?.wind?.speed),
-  //         hum: data?.main?.humidity,
-  //         imgWeather:
-  //           data.cod === 200
-  //             ? `http://openweathermap.org/img/wn/${data?.weather[0]?.icon}@4x.png`
-  //             : '',
-  //         lon: data.cod === 200 ? data?.coord?.lon : 0,
-  //         lat: data.cod === 200 ? data?.coord?.lat : 0,
-  //         timezoneCity: data?.timezone,
-  //       });
-  //     });
-
-  //   console.log('Hello H');
-  // }, [api.baseUrl, api.key, nameCityCurrent]);
-
-  // useEffect(() => {
-  //   fetch(
-  //     `${api.baseUrl}/onecall?lat=${weatherCityCurrent?.lat}&lon=${weatherCityCurrent?.lon}&units=metric&appid=${api.key}`,
-  //   )
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setWeatherHourly(data?.hourly);
-  //       setWeatherDaily(data?.daily);
-  //     });
-  // }, [api.baseUrl, api.key, weatherCityCurrent]);
 
   const [trackedCityList, setTrackedCityList] = useState([]);
 
@@ -178,13 +135,11 @@ function AppProvider({children}) {
 
     ms2kmhWind,
     roundTemp,
-    dtToDayMonth,
-    dtToHour,
-    dtToDayMonthDaily,
     roundTempAfterComma,
 
     isLoading,
     setIsLoading,
+    convertTime,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

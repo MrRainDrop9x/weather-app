@@ -32,6 +32,7 @@ export default function Home({navigation}) {
     roundTemp,
     isLoading,
     setIsLoading,
+    convertTime,
   } = useGlobalContext();
 
   //get tracked city from firestore
@@ -63,25 +64,29 @@ export default function Home({navigation}) {
         // convert data to json
         const json = await data.json();
 
-        console.log(json);
-        setLocations(locations => [
-          ...locations,
-          {
-            id: index,
-            city: json?.name,
-            dateTime: '07:50 PM — Wednesday, 26 May 2021',
-            temparature: `${roundTemp(json?.main?.temp)}\u2103`,
-            weatherType: json?.weather[0]?.main,
-            weatherDes: json?.weather[0]?.description,
-            wind: json?.wind?.speed,
-            rain: 50,
-            humidity: json?.main?.humidity,
-            visibility: json?.visibility,
-            windSpeed: json?.wind?.speed,
-            humidity: json?.main?.humidity,
-            pressure: json?.main.pressure,
-          },
-        ]);
+        setLocations(locations => {
+          if (locations.some(element => element.city == json.name))
+            return locations;
+
+          return [
+            ...locations,
+            {
+              id: index,
+              city: json?.name,
+              dateTime: convertTime(json.dt, json.timezone),
+              temparature: `${roundTemp(json?.main?.temp)}\u2103`,
+              weatherType: json?.weather[0]?.main,
+              weatherDes: json?.weather[0]?.description,
+              wind: json?.wind?.speed,
+              rain: 50,
+              humidity: json?.main?.humidity,
+              visibility: json?.visibility,
+              windSpeed: json?.wind?.speed,
+              humidity: json?.main?.humidity,
+              pressure: json?.main.pressure,
+            },
+          ];
+        });
       };
 
       fetchData()

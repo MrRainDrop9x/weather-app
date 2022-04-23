@@ -38,7 +38,11 @@ const DetailWeather = ({location}) => {
             <Text style={styles.sub}>Áp suất không khí</Text>
           </View>
           <View style={styles.info_item}>
-            <Text style={styles.main}>{`${location.visibility}`}</Text>
+            <Text
+              style={[
+                styles.main,
+                {textAlign: 'right'},
+              ]}>{`${location.visibility}`}</Text>
             <Text style={styles.sub}>Độ hiển thị</Text>
           </View>
         </View>
