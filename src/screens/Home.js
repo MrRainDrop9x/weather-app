@@ -52,9 +52,8 @@ export default function Home({navigation}) {
     getTrackedCityList();
   }, []);
 
-  useEffect(() => {
+  const loadData = () => {
     setLocations([]);
-
     trackedCityList.map((city, index) => {
       const url = `${api.baseUrl}/weather?q=${city.nameCity}&units=metric&appid=${api.key}&lang=vi`;
       // console.log(url);
@@ -65,6 +64,12 @@ export default function Home({navigation}) {
         const json = await data.json();
 
         setLocations(locations => {
+          let weatherDes = json?.weather[0]?.description;
+
+          if (weatherDes == 'bầu trời quang đãng') {
+            let temp = weatherDes.split(' ');
+            weatherDes = `${temp[2]} ${temp[3]}`;
+          }
           if (locations.some(element => element.city == json.name))
             return locations;
 
@@ -76,14 +81,14 @@ export default function Home({navigation}) {
               dateTime: convertTime(json.dt, json.timezone),
               temparature: `${roundTemp(json?.main?.temp)}\u2103`,
               weatherType: json?.weather[0]?.main,
-              weatherDes: json?.weather[0]?.description,
+              weatherDes: weatherDes,
               wind: json?.wind?.speed,
               rain: 50,
               humidity: json?.main?.humidity,
-              visibility: json?.visibility,
+              visibility: `${json?.visibility / 1000}`,
               windSpeed: json?.wind?.speed,
               humidity: json?.main?.humidity,
-              pressure: json?.main.pressure,
+              pressure: `${json?.main.pressure / 1000}`,
             },
           ];
         });
@@ -96,6 +101,10 @@ export default function Home({navigation}) {
           setIsLoading(false);
         });
     });
+  };
+
+  useEffect(() => {
+    loadData();
   }, [trackedCityList]);
 
   LogBox.ignoreLogs(['ViewPropTypes will be removed from React Native']);
@@ -148,7 +157,14 @@ export default function Home({navigation}) {
           } else if (location.weatherType === 'Rain') {
             bgImg = require('../../assets/rainy.jpg');
           }
-          return <CityItem location={location} bgImg={bgImg} key={index} />;
+          return (
+            <CityItem
+              location={location}
+              bgImg={bgImg}
+              loadData={loadData}
+              key={index}
+            />
+          );
         })}
       </ScrollView>
       <View style={styles.appHeader}>

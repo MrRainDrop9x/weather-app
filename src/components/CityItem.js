@@ -1,5 +1,11 @@
-import {View, Text, ImageBackground, StyleSheet} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  ImageBackground,
+  StyleSheet,
+  RefreshControl,
+} from 'react-native';
+import React, {useState, useCallback} from 'react';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import SunIcon from '../../assets/sun.svg';
@@ -26,8 +32,8 @@ const WeatherIcon = weatherType => {
   }
 };
 
-const CityItem = ({location, bgImg}) => {
-  const {weatherCityCurrent, weatherHourly, dtToHour, roundTemp} =
+const CityItem = ({location, bgImg, loadData}) => {
+  const {weatherCityCurrent, setTrackedCityList, dtToHour, roundTemp} =
     useGlobalContext();
   const {width: windowWidth, height: windowHeight} = useWindowDimensions();
   const renderWeatherHourItem = ({item, index}) => {
@@ -40,8 +46,26 @@ const CityItem = ({location, bgImg}) => {
       />
     );
   };
+
+  const [refreshing, setRefreshing] = useState(false);
+  const onRefresh = useCallback(async () => {
+    // hold on refresh event
+    setRefreshing(true);
+
+    // reload data LOCATIONS list
+    await loadData();
+    setRefreshing(false);
+  }, []);
   return (
-    <ScrollView nestedScrollEnabled>
+    <ScrollView
+      nestedScrollEnabled
+      refreshControl={
+        <RefreshControl
+          progressBackgroundColor={'rgba(0,0,0,0)'}
+          refreshing={refreshing}
+          onRefresh={onRefresh}
+        />
+      }>
       <View style={{width: windowWidth, height: windowHeight}}>
         <ImageBackground
           source={bgImg}
@@ -70,7 +94,7 @@ const CityItem = ({location, bgImg}) => {
                   <Text style={styles.temparature}>{location.temparature}</Text>
                 </View>
                 <View style={{flex: 1}}>
-                  <Text style={styles.weatherDes} numberOfLines={2}>
+                  <Text style={styles.weatherDes} numberOfLines={1}>
                     {location.weatherDes}
                   </Text>
                 </View>
@@ -116,6 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 34,
     textAlign: 'right',
+    textTransform: 'capitalize',
   },
   bottomInfoWrapper: {
     flexDirection: 'row',

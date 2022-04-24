@@ -24,17 +24,25 @@ const DetailWeather = ({location}) => {
         </View>
         <View style={styles.info}>
           <View style={styles.info_item}>
-            <Text style={styles.main}>{`${location.windSpeed}`}</Text>
+            <Text style={styles.main}>
+              {`${location.windSpeed} `}
+              <Text style={{fontSize: 15}}>km/h</Text>
+            </Text>
             <Text style={styles.sub}>Tốc độ gió</Text>
           </View>
           <View style={styles.info_item}>
-            <Text style={styles.main}>{`${location.humidity}%`}</Text>
+            <View>
+              <Text style={styles.main}>{`${location.humidity}%`}</Text>
+            </View>
             <Text style={styles.sub}>Độ ẩm</Text>
           </View>
         </View>
         <View style={styles.info}>
           <View style={styles.info_item}>
-            <Text style={styles.main}>{`${location.pressure}`}</Text>
+            <Text style={styles.main}>
+              {`${location.pressure} `}
+              <Text style={{fontSize: 15}}>hPa</Text>
+            </Text>
             <Text style={styles.sub}>Áp suất không khí</Text>
           </View>
           <View style={styles.info_item}>
@@ -42,7 +50,7 @@ const DetailWeather = ({location}) => {
               style={[
                 styles.main,
                 {textAlign: 'right'},
-              ]}>{`${location.visibility}`}</Text>
+              ]}>{`${location.visibility} km`}</Text>
             <Text style={styles.sub}>Độ hiển thị</Text>
           </View>
         </View>
@@ -80,6 +88,6 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   sub: {
-    color: '#91919A',
+    color: 'rgba(255,255,255,0.7)',
   },
 });
