@@ -266,6 +266,7 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:29.2.1")
     implementation "com.google.firebase:firebase-analytics"
     implementation project(':react-native-vector-icons')
+    implementation project(':react-native-community-geolocation')
     
     implementation(project(':react-native-maps')){
        exclude group: 'com.google.android.gms', module: 'play-services-base'

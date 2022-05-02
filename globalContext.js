@@ -66,14 +66,18 @@ function AppProvider({children}) {
     return Math.round(temp * 10) / 10;
   };
 
+  const prettierNumberTime = time => {
+    return time < 10 ? `0${time}` : time;
+  };
+
   //convert fomat time
   const convertTime = (dt, timezoneCity) => {
     const time = new Date(
       new Date(dt * 1000) - (timeZone - timezoneCity) * 1000,
     );
-    return `${time.getHours()}:${time.getMinutes()} - ${
-      daysEng[time.getDay()]
-    }, ${time.getDate()} ${
+    return `${prettierNumberTime(time.getHours())}:${prettierNumberTime(
+      time.getMinutes(),
+    )} - ${daysEng[time.getDay()]}, ${time.getDate()} ${
       monthNamesEng[time.getMonth()]
     } ${time.getFullYear()}`;
   };

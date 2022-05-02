@@ -43,7 +43,8 @@ export default function Home({navigation}) {
       .onSnapshot(snapshot => {
         setTrackedCityList(
           snapshot.docs.map(doc => {
-            return {nameCity: doc.data().nameCity, id: doc.id};
+            // console.log(doc.data().createAt.seconds);
+            return {nameCity: doc.data().nameCity, createAt: doc.data().createAt, id: doc.id};
           }),
         );
       });
@@ -112,8 +113,8 @@ export default function Home({navigation}) {
   LogBox.ignoreLogs(['EdgeInsetsPropType will be removed from React Native']);
   LogBox.ignoreLogs(['PointPropType will be removed from React Native.']);
 
-  const goFind = () => {
-    navigation.navigate('Find');
+  const goAddCityOption = () => {
+    navigation.navigate('AddCityOption');
   };
 
   const goListCity = () => {
@@ -168,7 +169,7 @@ export default function Home({navigation}) {
         })}
       </ScrollView>
       <View style={styles.appHeader}>
-        <TouchableOpacity onPress={goFind}>
+        <TouchableOpacity onPress={goAddCityOption}>
           <SearchIcon width={24} height={24} fill="#fff" />
         </TouchableOpacity>
         <TouchableOpacity onPress={goListCity}>

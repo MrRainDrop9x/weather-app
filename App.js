@@ -2,7 +2,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
-import Find from './src/screens/Find';
 import Info from './src/screens/Info';
 import ListCity from './src/screens/ListCity';
 import AddCityOption from './src/screens/AddCityOption';
@@ -24,11 +23,6 @@ export default function App() {
           <Stack.Screen
             name="Info"
             component={Info}
-            options={{header: () => null}}
-          />
-          <Stack.Screen
-            name="Find"
-            component={Find}
             options={{header: () => null}}
           />
           <Stack.Screen
