@@ -44,7 +44,11 @@ export default function Home({navigation}) {
         setTrackedCityList(
           snapshot.docs.map(doc => {
             // console.log(doc.data().createAt.seconds);
-            return {nameCity: doc.data().nameCity, createAt: doc.data().createAt, id: doc.id};
+            return {
+              nameCity: doc.data().nameCity,
+              createAt: doc.data().createAt,
+              id: doc.id,
+            };
           }),
         );
       });
@@ -129,45 +133,49 @@ export default function Home({navigation}) {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <ScrollView
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: {
-                  x: scrollX,
+      {trackedCityList.length > 0 ? (
+        <ScrollView
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onScroll={Animated.event(
+            [
+              {
+                nativeEvent: {
+                  contentOffset: {
+                    x: scrollX,
+                  },
                 },
               },
-            },
-          ],
-          {useNativeDriver: false},
-        )}
-        scrollEventThrottle={1}>
-        {locations?.map((location, index) => {
-          let bgImg;
-          //Thunderstorm,Drizzle,Snow,Mist
-          if (location.weatherType === 'Clear') {
-            bgImg = require('../../assets/sunny.jpg');
-          } else if (location.weatherType === 'Night') {
-            bgImg = require('../../assets/night2.jpg');
-          } else if (location.weatherType === 'Clouds') {
-            bgImg = require('../../assets/cloudy.jpeg');
-          } else if (location.weatherType === 'Rain') {
-            bgImg = require('../../assets/rainy.jpg');
-          }
-          return (
-            <CityItem
-              location={location}
-              bgImg={bgImg}
-              loadData={loadData}
-              key={index}
-            />
-          );
-        })}
-      </ScrollView>
+            ],
+            {useNativeDriver: false},
+          )}
+          scrollEventThrottle={1}>
+          {locations?.map((location, index) => {
+            let bgImg;
+            //Thunderstorm,Drizzle,Snow,Mist
+            if (location.weatherType === 'Clear') {
+              bgImg = require('../../assets/sunny.jpg');
+            } else if (location.weatherType === 'Night') {
+              bgImg = require('../../assets/night2.jpg');
+            } else if (location.weatherType === 'Clouds') {
+              bgImg = require('../../assets/cloudy.jpeg');
+            } else if (location.weatherType === 'Rain') {
+              bgImg = require('../../assets/rainy.jpg');
+            }
+            return (
+              <CityItem
+                location={location}
+                bgImg={bgImg}
+                loadData={loadData}
+                key={index}
+              />
+            );
+          })}
+        </ScrollView>
+      ) : (
+        <ScrollView>Không có thành phố nào!</ScrollView>
+      )}
       <View style={styles.appHeader}>
         <TouchableOpacity onPress={goAddCityOption}>
           <SearchIcon width={24} height={24} fill="#fff" />

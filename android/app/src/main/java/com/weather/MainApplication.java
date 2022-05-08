@@ -14,7 +14,6 @@ import com.facebook.soloader.SoLoader;
 import com.weather.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 
 import com.airbnb.android.react.lottie.LottiePackage;
