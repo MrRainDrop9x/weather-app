@@ -1,11 +1,21 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import Right from 'react-native-vector-icons/AntDesign'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+export default function DetailWeather({location,navigation}) {
 
-const DetailWeather = ({location}) => {
+  const goInfo = () => {
+    navigation.navigate('Info');
+  }
+
   return (
     <View style={styles.wrapperDetail}>
       <View>
-        <Text style={styles.detail}>Chi tiết thời tiết</Text>
+        <TouchableOpacity >
+        <Text onPress={goInfo} style={styles.detail}>Chi tiết thời tiết
+        <Right name='right' size={14} color='#208df8' />
+        </Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.wrapperInfo}>
         <View style={styles.info}>
@@ -59,13 +69,12 @@ const DetailWeather = ({location}) => {
   );
 };
 
-export default DetailWeather;
 
 const font = 'Lato-Regular';
 const styles = StyleSheet.create({
   wrapperDetail: {},
   detail: {
-    color: '#fff',
+    color: '#208df8',
     fontFamily: font,
     fontSize: 15,
     fontWeight: 'bold',

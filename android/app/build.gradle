@@ -263,10 +263,16 @@ dependencies {
 
     implementation project(':lottie-react-native')
 
+    //react-gif
+    implementation 'com.facebook.fresco:animated-gif:2.6.0'
+    implementation 'com.facebook.fresco:animated-webp:2.0.0'
+    implementation 'com.facebook.fresco:webpsupport:2.0.0'
+
+    //
     implementation platform("com.google.firebase:firebase-bom:29.2.1")
     implementation "com.google.firebase:firebase-analytics"
     implementation project(':react-native-vector-icons')
-    implementation project(':react-native-community-geolocation')
+    // implementation project(':react-native-community-geolocation')
     
 //     implementation(project(':react-native-maps')){
 //        exclude group: 'com.google.android.gms', module: 'play-services-base'

@@ -10,7 +10,7 @@ import {
   LogBox,
 } from 'react-native';
 
-import MenuIcon from '../../assets//menu.svg';
+import MenuIcon from '../../assets/menu.svg';
 import SearchIcon from '../../assets/search.svg';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import React from 'react';
@@ -155,20 +155,27 @@ export default function Home({navigation}) {
             let bgImg;
             //Thunderstorm,Drizzle,Snow,Mist
             if (location.weatherType === 'Clear') {
-              bgImg = require('../../assets/sunny.jpg');
-            } else if (location.weatherType === 'Night') {
-              bgImg = require('../../assets/night2.jpg');
+              bgImg = require('../../assets/blue_sky.jpg');
+            } else if (location.weatherType === 'Fog') {
+              bgImg = require('../../assets/gif/fog.gif');
             } else if (location.weatherType === 'Clouds') {
-              bgImg = require('../../assets/cloudy.jpeg');
+              bgImg = require('../../assets/gif/clouds.gif');
             } else if (location.weatherType === 'Rain') {
-              bgImg = require('../../assets/rainy.jpg');
+              bgImg = require('../../assets/gif/rain.gif');
+            } else if (location.weatherType === 'Snow') {
+              bgImg = require('../../assets/gif/snow.gif');
+            }else if (location.weatherType === 'Thunderstorm') {
+              bgImg = require('../../assets/gif/thunder.gif');
+              
             }
+            
             return (
               <CityItem
                 location={location}
                 bgImg={bgImg}
                 loadData={loadData}
                 key={index}
+                navigation={navigation}
               />
             );
           })}

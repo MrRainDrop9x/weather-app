@@ -81,7 +81,15 @@ function AppProvider({children}) {
       monthNamesEng[time.getMonth()]
     } ${time.getFullYear()}`;
   };
+  const dtToDayMonthDaily = (dt, timezoneCity) => {
+    const time = new Date(
+      new Date(dt * 1000) - (timeZone - timezoneCity) * 1000
+    )
 
+    const dTime = time.getDate() < 10 ? `0${time.getDate()}` : time.getDate()
+
+    return `${monthNames[time.getMonth()]}, ${dTime}`
+  }
   const [input, setInput] = useState('');
   const [hoverInput, setHoverInput] = useState(false);
 
@@ -110,6 +118,8 @@ function AppProvider({children}) {
   const [trackedCityList, setTrackedCityList] = useState([]);
 
   const [locations, setLocations] = useState([]);
+
+
 
   // export default locals;
 
@@ -144,6 +154,8 @@ function AppProvider({children}) {
     isLoading,
     setIsLoading,
     convertTime,
+
+    dtToDayMonthDaily
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

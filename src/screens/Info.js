@@ -10,7 +10,7 @@ import React from 'react';
 import WTHourItem from '../components/WTHourItem';
 import WTDayItem from '../components/WTDayItem';
 import {useGlobalContext} from '../../globalContext';
-import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IconFontisto from 'react-native-vector-icons/Fontisto';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 import {LinearGradient} from 'react-native-svg';
@@ -28,17 +28,85 @@ export default function Info({navigation}) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.backHome}>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => navigation.navigate('Home')}
-          style={styles.backBtn}>
-          <Text>&lt;</Text>
-          <Text style={styles.titleBack}>Quay lại</Text>
-        </TouchableOpacity>
-        <IconIonicons name="settings-sharp" size={30} color="#000" />
-      </View>
-    </View>
+    <LinearGradient
+        colors={['rgba(72,187,226,1)', 'rgba(73,147,249,1)']}
+        style={styles.background}
+    >
+        <View style={styles.backHome}>
+            <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate('Home')}
+                style={styles.backBtn}
+            >
+                <MaterialIcons
+                    name="arrow-back-ios"
+                    size={24}
+                    color="#fff"
+                />
+                <Text style={styles.titleBack}>Quay lại</Text>
+            </TouchableOpacity>
+            <MaterialIcons name="settings" size={24} color="#fff" />
+        </View>
+        <View>
+            <View style={styles.title}>
+                <Text style={styles.textMain}>Hôm nay</Text>
+                <Text style={styles.dateToday}>{`${dtToDayMonthDaily(
+                    weatherCityCurrent.dt,
+                    weatherCityCurrent.timezoneCity
+                )}`}</Text>
+            </View>
+            <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                style={styles.scrollViewH}
+            >
+                {weatherHourly.map(
+                    (item, index) =>
+                        index < 12 && (
+                            <WTHourItem
+                                key={index}
+                                temperature={roundTempAfterComma(
+                                    item.temp
+                                )}
+                                hour={dtToHour(
+                                    item.dt,
+                                    weatherCityCurrent.timezoneCity
+                                )}
+                                img={item.weather[0].icon}
+                            />
+                        )
+                )}
+            </ScrollView>
+        </View>
+        <View>
+            <View style={styles.title}>
+                <Text style={styles.textMain}>Dự báo trong tuần</Text>
+                {/* <MaterialCommunityIcons
+                    name="calendar-today"
+                    size={24}
+                    color="#fff"
+                /> */}
+            </View>
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1 }}
+                showsVerticalScrollIndicator={true}
+                style={styles.scrollViewV}
+            >
+                {weatherDaily.map((item, index) => (
+                    <WTDayItem
+                        key={index}
+                        dateTime={dtToDayMonthDaily(
+                            item.dt,
+                            weatherCityCurrent.timezoneCity
+                        )}
+                        img={item.weather[0].icon}
+                        temperature={roundTemp(item.temp.day)}
+                    />
+                ))}
+            </ScrollView>
+        </View>
+    </LinearGradient>
+</View>
   );
 }
 

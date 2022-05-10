@@ -17,6 +17,7 @@ import WTHourItem from '../components/WTHourItem';
 import WeatherDayItem from './WeatherDayItem';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import DetailWeather from './DetailWeather';
+
 const WeatherIcon = weatherType => {
   if (weatherType === 'Sunny') {
     return <SunIcon width={34} height={34} fill="#fff" />;
@@ -32,7 +33,7 @@ const WeatherIcon = weatherType => {
   }
 };
 
-const CityItem = ({location, bgImg, loadData}) => {
+const CityItem = ({location, bgImg, loadData,navigation}) => {
   const {weatherCityCurrent, setTrackedCityList, dtToHour, roundTemp} =
     useGlobalContext();
   const {width: windowWidth, height: windowHeight} = useWindowDimensions();
@@ -68,15 +69,17 @@ const CityItem = ({location, bgImg, loadData}) => {
       }>
       <View style={{width: windowWidth, height: windowHeight}}>
         <ImageBackground
+        resizeMode="cover" 
           source={bgImg}
           style={{
             flex: 1,
+            
           }}>
           {/* current */}
           <View
             style={{
               flex: 1,
-              backgroundColor: 'rgba(0,0,0,0.3)',
+              backgroundColor: 'rgba(0,0,0,0)',
               padding: 20,
             }}>
             <View style={styles.topInfoWrapper}>
@@ -102,7 +105,7 @@ const CityItem = ({location, bgImg, loadData}) => {
             </View>
 
             <View style={styles.bottomInfoWrapper}>
-              <DetailWeather location={location} />
+              <DetailWeather location={location} navigation={navigation} />
             </View>
           </View>
         </ImageBackground>
