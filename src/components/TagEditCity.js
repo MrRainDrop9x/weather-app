@@ -34,7 +34,7 @@ export default function TagEditCity({
       <CheckBox
         style={styles.checkbox}
         onClick={() => handleChecked()}
-        isChecked={check}
+        isChecked={checked || check}
       />
     </View>
   );
