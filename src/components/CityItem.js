@@ -70,7 +70,6 @@ const CityItem = ({location, bgImg, loadData,navigation}) => {
           <View
             style={{
               flex: 1,
-              backgroundColor: 'rgba(0,0,0,0)',
               padding: 20,
             }}>
             <View style={styles.topInfoWrapper}>

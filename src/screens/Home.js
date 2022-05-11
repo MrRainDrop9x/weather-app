@@ -159,7 +159,7 @@ export default function Home({navigation}) {
             let bgImg;
             //Thunderstorm,Drizzle,Snow,Mist
             if (location.weatherType === 'Clear') {
-              bgImg = require('../../assets/blue_sky.jpg');
+              bgImg = require('../../assets/gif/clear.gif');
             } else if (location.weatherType === 'Fog') {
               bgImg = require('../../assets/gif/fog.gif');
             } else if (location.weatherType === 'Clouds') {

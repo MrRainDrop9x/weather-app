@@ -22,13 +22,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         justifyContent:'center',
-        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+        // backgroundColor: 'rgba(255, 255, 255, 0.3)',
         paddingVertical: 13,
         paddingHorizontal: 12,
         marginHorizontal: 2,
-        borderRadius: 20,
-        borderColor: '#C4DDED',
-        borderWidth: 0.8,
+        // borderRadius: 20,
+        // borderColor: '#C4DDED',
+        // borderWidth: 0.8,
+        border:'none'
     },
     temperature: {
         marginBottom: 8,

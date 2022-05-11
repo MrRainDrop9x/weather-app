@@ -87,6 +87,11 @@ const styles = StyleSheet.create({
     fontFamily: font,
     fontSize: 15,
     fontWeight: 'bold',
+    textShadowOffset: {
+      width: 10,
+      height: 10,
+    },
+    textShadowColor: 'red'
   },
   wrapperInfo: {
     width: 300,
