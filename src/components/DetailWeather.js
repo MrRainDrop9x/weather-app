@@ -2,12 +2,21 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Right from 'react-native-vector-icons/AntDesign'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useGlobalContext} from '../../globalContext';
+
 export default function DetailWeather({location,navigation}) {
+  const {
+    setWeatherCityCurrent,
+    setIsLoading
+  } = useGlobalContext();
+
 
   const goInfo = () => {
+    setIsLoading(true)
+    setWeatherCityCurrent(location)
     navigation.navigate('Info');
   }
-
+  
   return (
     <View style={styles.wrapperDetail}>
       <View>

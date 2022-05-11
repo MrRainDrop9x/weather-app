@@ -7,46 +7,38 @@ import {
 } from 'react-native';
 import React, {useState, useCallback} from 'react';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
-import {getStatusBarHeight} from 'react-native-status-bar-height';
-import SunIcon from '../../assets/sun.svg';
-import CloudIcon from '../../assets/cloudy.svg';
-import MoonIcon from '../../assets/moon.svg';
-import RainIcon from '../../assets/rain.svg';
+// import {getStatusBarHeight} from 'react-native-status-bar-height';
+// import SunIcon from '../../assets/sun.svg';
+// import CloudIcon from '../../assets/cloudy.svg';
+// import MoonIcon from '../../assets/moon.svg';
+// import RainIcon from '../../assets/rain.svg';
 import {useGlobalContext} from '../../globalContext';
 import WTHourItem from '../components/WTHourItem';
 import WeatherDayItem from './WeatherDayItem';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import DetailWeather from './DetailWeather';
 
-const WeatherIcon = weatherType => {
-  if (weatherType === 'Sunny') {
-    return <SunIcon width={34} height={34} fill="#fff" />;
-  }
-  if (weatherType === 'Rainy') {
-    return <RainIcon width={34} height={34} fill="#fff" />;
-  }
-  if (weatherType === 'Cloudy') {
-    return <CloudIcon width={34} height={34} fill="#fff" />;
-  }
-  if (weatherType === 'Night') {
-    return <MoonIcon width={34} height={34} fill="#fff" />;
-  }
-};
+// const WeatherIcon = weatherType => {
+//   if (weatherType === 'Sunny') {
+//     return <SunIcon width={34} height={34} fill="#fff" />;
+//   }
+//   if (weatherType === 'Rainy') {
+//     return <RainIcon width={34} height={34} fill="#fff" />;
+//   }
+//   if (weatherType === 'Cloudy') {
+//     return <CloudIcon width={34} height={34} fill="#fff" />;
+//   }
+//   if (weatherType === 'Night') {
+//     return <MoonIcon width={34} height={34} fill="#fff" />;
+//   }
+// };
 
 const CityItem = ({location, bgImg, loadData,navigation}) => {
   const {weatherCityCurrent, setTrackedCityList, dtToHour, roundTemp} =
     useGlobalContext();
   const {width: windowWidth, height: windowHeight} = useWindowDimensions();
-  const renderWeatherHourItem = ({item, index}) => {
-    return (
-      <WTHourItem
-        key={index}
-        temperature={roundTemp(item.temp)}
-        hour={dtToHour(item.dt, weatherCityCurrent.timezoneCity)}
-        img={item.weather[0].icon}
-      />
-    );
-  };
+  
+  
 
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(async () => {
@@ -73,7 +65,6 @@ const CityItem = ({location, bgImg, loadData,navigation}) => {
           source={bgImg}
           style={{
             flex: 1,
-            
           }}>
           {/* current */}
           <View

@@ -1,17 +1,17 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
+import Fontisto from 'react-native-vector-icons/Fontisto'
 
 export default function WTHourItem({ temperature, hour, img }) {
     return (
         <View style={styles.container}>
             <Text style={styles.temperature}>{`${temperature}°C`}</Text>
-            {/* <CloudAndSun width={50} height={44} /> */}
-            <Image
+            { <Image
                 style={styles.weatherImg}
                 source={{
                     uri: `http://openweathermap.org/img/wn/${img}@4x.png`,
                 }}
-            />
+            />}
             <Text style={styles.hour}>{`${hour}`}</Text>
         </View>
     );
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     container: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent:'center',
         backgroundColor: 'rgba(255, 255, 255, 0.3)',
         paddingVertical: 13,
         paddingHorizontal: 12,

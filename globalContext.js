@@ -13,7 +13,7 @@ function AppProvider({children}) {
     baseUrl: 'http://api.openweathermap.org/data/2.5',
     svgUrl: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/04n.svg',
   };
-
+  
   const monthNamesEng = [
     'Jan',
     'Feb',
@@ -90,6 +90,13 @@ function AppProvider({children}) {
 
     return `${monthNames[time.getMonth()]}, ${dTime}`
   }
+  const dtToHour = (dt, timezoneCity) => {
+    const time = new Date(
+      new Date(dt * 1000) - (timeZone - timezoneCity) * 1000
+    )
+    const hour = time.getHours() > 9 ? time.getHours() : `0${time.getHours()}`
+    return `${hour}.00`
+  }
   const [input, setInput] = useState('');
   const [hoverInput, setHoverInput] = useState(false);
 
@@ -120,7 +127,17 @@ function AppProvider({children}) {
   const [locations, setLocations] = useState([]);
 
 
-
+  useEffect(() => {
+    fetch(
+      `${api.baseUrl}/onecall?lat=${weatherCityCurrent?.lat}&lon=${weatherCityCurrent?.lon}&units=metric&appid=${api.key}`
+    )
+      .then(response => response.json())
+      .then(data => {
+        setWeatherHourly(data?.hourly)
+        setWeatherDaily(data?.daily)
+        setIsLoading(false)
+      })
+  }, [weatherCityCurrent])
   // export default locals;
 
   const value = {
@@ -155,7 +172,8 @@ function AppProvider({children}) {
     setIsLoading,
     convertTime,
 
-    dtToDayMonthDaily
+    dtToDayMonthDaily,
+    dtToHour,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

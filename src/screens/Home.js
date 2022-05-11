@@ -81,6 +81,10 @@ export default function Home({navigation}) {
           return [
             ...locations,
             {
+              lon: json.coord.lon,
+              lat: json.coord.lat,
+              dt:json.dt,
+              timezoneCity:json.timezone,
               id: index,
               city: json?.name,
               dateTime: convertTime(json.dt, json.timezone),

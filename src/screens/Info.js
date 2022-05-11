@@ -4,16 +4,14 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import React from 'react';
 import WTHourItem from '../components/WTHourItem';
 import WTDayItem from '../components/WTDayItem';
 import {useGlobalContext} from '../../globalContext';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import IconFontisto from 'react-native-vector-icons/Fontisto';
-import IconIonicons from 'react-native-vector-icons/Ionicons';
-import {LinearGradient} from 'react-native-svg';
+import LinearGradient from 'react-native-linear-gradient';
+import Loading from './Loading';
 
 export default function Info({navigation}) {
   const {
@@ -24,12 +22,20 @@ export default function Info({navigation}) {
     dtToHour,
     dtToDayMonthDaily,
     roundTempAfterComma,
+    isLoading,setIsLoading
   } = useGlobalContext();
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <View style={styles.container}>
     <LinearGradient
-        colors={['rgba(72,187,226,1)', 'rgba(73,147,249,1)']}
+        colors={['rgba(71, 191, 223, 1)',
+          'rgba(74, 155, 248, 1)',
+          'rgba(74, 152, 250, 1)',
+          'rgba(74, 152, 250, 1)',
+          'rgba(74, 152, 250, 1)',
+          'rgba(74, 145, 255, 1)',]}
         style={styles.background}
     >
         <View style={styles.backHome}>
@@ -78,14 +84,14 @@ export default function Info({navigation}) {
                 )}
             </ScrollView>
         </View>
-        <View>
+        <View>  
             <View style={styles.title}>
                 <Text style={styles.textMain}>Dự báo trong tuần</Text>
-                {/* <MaterialCommunityIcons
+                <MaterialIcons
                     name="calendar-today"
                     size={24}
                     color="#fff"
-                /> */}
+                />
             </View>
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1 }}
