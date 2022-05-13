@@ -171,6 +171,10 @@ export default function Home({navigation}) {
               bgImg = require('../../assets/gif/snow.gif');
             } else if (location.weatherType === 'Thunderstorm') {
               bgImg = require('../../assets/gif/thunder.gif');
+            } else if (location.weatherType === 'Mist') {
+              bgImg = require('../../assets/gif/fog.gif');
+            } else if (location.weatherType === 'Drizzle') {
+              bgImg = require('../../assets/gif/rain.gif');
             }
 
             return (
@@ -185,7 +189,7 @@ export default function Home({navigation}) {
           })}
         </ScrollView>
       ) : (
-        <EmptyScreen />
+        <EmptyScreen navigation={navigation} />
       )}
       <View style={styles.appHeader}>
         <TouchableOpacity onPress={goAddCityOption}>

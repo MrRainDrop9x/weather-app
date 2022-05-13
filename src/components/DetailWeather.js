@@ -1,29 +1,26 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import Right from 'react-native-vector-icons/AntDesign'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import Right from 'react-native-vector-icons/AntDesign';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useGlobalContext} from '../../globalContext';
 
-export default function DetailWeather({location,navigation}) {
-  const {
-    setWeatherCityCurrent,
-    setIsLoading
-  } = useGlobalContext();
-
+export default function DetailWeather({location, navigation}) {
+  const {setWeatherCityCurrent, setIsLoading} = useGlobalContext();
 
   const goInfo = () => {
-    setIsLoading(true)
-    setWeatherCityCurrent(location)
+    setIsLoading(true);
+    setWeatherCityCurrent(location);
     navigation.navigate('Info');
-  }
-  
+  };
+
   return (
     <View style={styles.wrapperDetail}>
       <View>
-        <TouchableOpacity >
-        <Text onPress={goInfo} style={styles.detail}>Chi tiết thời tiết
-        <Right name='right' size={14} color='#208df8' />
-        </Text>
+        <TouchableOpacity>
+          <Text onPress={goInfo} style={styles.detail}>
+            Chi tiết thời tiết
+            <Right name="right" size={14} color="#208df8" />
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.wrapperInfo}>
@@ -76,14 +73,13 @@ export default function DetailWeather({location,navigation}) {
       </View>
     </View>
   );
-};
-
+}
 
 const font = 'Lato-Regular';
 const styles = StyleSheet.create({
   wrapperDetail: {},
   detail: {
-    color: '#208df8',
+    color: '#4A91FF',
     fontFamily: font,
     fontSize: 15,
     fontWeight: 'bold',
@@ -91,7 +87,7 @@ const styles = StyleSheet.create({
       width: 10,
       height: 10,
     },
-    textShadowColor: 'red'
+    textShadowColor: 'red',
   },
   wrapperInfo: {
     width: 300,

@@ -22,97 +22,83 @@ export default function Info({navigation}) {
     dtToHour,
     dtToDayMonthDaily,
     roundTempAfterComma,
-    isLoading,setIsLoading
+    isLoading,
+    setIsLoading,
   } = useGlobalContext();
   if (isLoading) {
     return <Loading />;
   }
   return (
     <View style={styles.container}>
-    <LinearGradient
-        colors={['rgba(71, 191, 223, 1)',
+      <LinearGradient
+        colors={[
+          'rgba(71, 191, 223, 1)',
           'rgba(74, 155, 248, 1)',
           'rgba(74, 152, 250, 1)',
           'rgba(74, 152, 250, 1)',
           'rgba(74, 152, 250, 1)',
-          'rgba(74, 145, 255, 1)',]}
-        style={styles.background}
-    >
+          'rgba(74, 145, 255, 1)',
+        ]}
+        style={styles.background}>
         <View style={styles.backHome}>
-            <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => navigation.navigate('Home')}
-                style={styles.backBtn}
-            >
-                <MaterialIcons
-                    name="arrow-back-ios"
-                    size={24}
-                    color="#fff"
-                />
-                <Text style={styles.titleBack}>Quay lại</Text>
-            </TouchableOpacity>
-            <MaterialIcons name="settings" size={24} color="#fff" />
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate('Home')}
+            style={styles.backBtn}>
+            <MaterialIcons name="arrow-back-ios" size={24} color="#fff" />
+            <Text style={styles.titleBack}>Quay lại</Text>
+          </TouchableOpacity>
+          <MaterialIcons name="settings" size={24} color="#fff" />
         </View>
         <View>
-            <View style={styles.title}>
-                <Text style={styles.textMain}>Hôm nay</Text>
-                <Text style={styles.dateToday}>{`${dtToDayMonthDaily(
-                    weatherCityCurrent.dt,
-                    weatherCityCurrent.timezoneCity
-                )}`}</Text>
-            </View>
-            <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                style={styles.scrollViewH}
-            >
-                {weatherHourly.map(
-                    (item, index) =>
-                        index < 12 && (
-                            <WTHourItem
-                                key={index}
-                                temperature={roundTempAfterComma(
-                                    item.temp
-                                )}
-                                hour={dtToHour(
-                                    item.dt,
-                                    weatherCityCurrent.timezoneCity
-                                )}
-                                img={item.weather[0].icon}
-                            />
-                        )
+          <View style={styles.title}>
+            <Text style={styles.textMain}>Hôm nay</Text>
+            <Text style={styles.dateToday}>{`${dtToDayMonthDaily(
+              weatherCityCurrent.dt,
+              weatherCityCurrent.timezoneCity,
+            )}`}</Text>
+          </View>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            style={styles.scrollViewH}>
+            {weatherHourly.map(
+              (item, index) =>
+                index < 12 && (
+                  <WTHourItem
+                    key={index}
+                    temperature={roundTempAfterComma(item.temp)}
+                    hour={dtToHour(item.dt, weatherCityCurrent.timezoneCity)}
+                    img={item.weather[0].icon}
+                  />
+                ),
+            )}
+          </ScrollView>
+        </View>
+        <View>
+          <View style={styles.title}>
+            <Text style={styles.textMain}>Dự báo trong tuần</Text>
+            <MaterialIcons name="calendar-today" size={24} color="#fff" />
+          </View>
+          <ScrollView
+            contentContainerStyle={{flexGrow: 1}}
+            showsVerticalScrollIndicator={true}
+            style={styles.scrollViewV}>
+            {weatherDaily.map((item, index) => (
+              <WTDayItem
+                key={index}
+                dateTime={dtToDayMonthDaily(
+                  item.dt,
+                  weatherCityCurrent.timezoneCity,
                 )}
-            </ScrollView>
+                img={item.weather[0].icon}
+                temperature={roundTemp(item.temp.day)}
+              />
+            ))}
+          </ScrollView>
         </View>
-        <View>  
-            <View style={styles.title}>
-                <Text style={styles.textMain}>Dự báo trong tuần</Text>
-                <MaterialIcons
-                    name="calendar-today"
-                    size={24}
-                    color="#fff"
-                />
-            </View>
-            <ScrollView
-                contentContainerStyle={{ flexGrow: 1 }}
-                showsVerticalScrollIndicator={true}
-                style={styles.scrollViewV}
-            >
-                {weatherDaily.map((item, index) => (
-                    <WTDayItem
-                        key={index}
-                        dateTime={dtToDayMonthDaily(
-                            item.dt,
-                            weatherCityCurrent.timezoneCity
-                        )}
-                        img={item.weather[0].icon}
-                        temperature={roundTemp(item.temp.day)}
-                    />
-                ))}
-            </ScrollView>
-        </View>
-    </LinearGradient>
-</View>
+      </LinearGradient>
+    </View>
   );
 }
 
@@ -121,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundImage: 'linear-gradient(#47BFDF,4A91FF)',
+    backgroundImage: 'linear-gradient(#47BFDF,#4A91FF)',
   },
   background: {
     position: 'absolute',
