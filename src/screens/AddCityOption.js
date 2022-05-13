@@ -59,10 +59,10 @@ export default function AddCityOption({navigation}) {
       let arrTrackedCityList = [...trackedCityList];
 
       if (!arrTrackedCityList.find(city => city?.nameCity === data.name)) {
-        if (arrTrackedCityList.length >= 4) {
+        if (arrTrackedCityList.length >= 3) {
           firestore()
             .collection('weatherCurrent')
-            .doc(arrTrackedCityList[3].id)
+            .doc(arrTrackedCityList[2].id)
             .delete();
         }
 
