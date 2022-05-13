@@ -7,11 +7,6 @@ import {
 } from 'react-native';
 import React, {useState, useCallback} from 'react';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
-// import {getStatusBarHeight} from 'react-native-status-bar-height';
-// import SunIcon from '../../assets/sun.svg';
-// import CloudIcon from '../../assets/cloudy.svg';
-// import MoonIcon from '../../assets/moon.svg';
-// import RainIcon from '../../assets/rain.svg';
 import {useGlobalContext} from '../../globalContext';
 import WTHourItem from '../components/WTHourItem';
 import WeatherDayItem from './WeatherDayItem';
@@ -51,6 +46,7 @@ const CityItem = ({location, bgImg, loadData,navigation}) => {
   }, []);
   return (
     <ScrollView
+    
       nestedScrollEnabled
       refreshControl={
         <RefreshControl

@@ -20,6 +20,7 @@ import firestore from '@react-native-firebase/firestore';
 import {ScrollView} from 'react-native-gesture-handler';
 import CityItem from '../components/CityItem';
 import Loading from './Loading';
+import EmptyScreen from './EmptyScreen';
 import {useGlobalContext} from '../../globalContext';
 
 export default function Home({navigation}) {
@@ -83,8 +84,8 @@ export default function Home({navigation}) {
             {
               lon: json.coord.lon,
               lat: json.coord.lat,
-              dt:json.dt,
-              timezoneCity:json.timezone,
+              dt: json.dt,
+              timezoneCity: json.timezone,
               id: index,
               city: json?.name,
               dateTime: convertTime(json.dt, json.timezone),
@@ -168,11 +169,10 @@ export default function Home({navigation}) {
               bgImg = require('../../assets/gif/rain.gif');
             } else if (location.weatherType === 'Snow') {
               bgImg = require('../../assets/gif/snow.gif');
-            }else if (location.weatherType === 'Thunderstorm') {
+            } else if (location.weatherType === 'Thunderstorm') {
               bgImg = require('../../assets/gif/thunder.gif');
-              
             }
-            
+
             return (
               <CityItem
                 location={location}
@@ -185,7 +185,7 @@ export default function Home({navigation}) {
           })}
         </ScrollView>
       ) : (
-        <ScrollView>Không có thành phố nào!</ScrollView>
+        <EmptyScreen />
       )}
       <View style={styles.appHeader}>
         <TouchableOpacity onPress={goAddCityOption}>
