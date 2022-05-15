@@ -69,6 +69,13 @@ export default function Home({navigation}) {
         // convert data to json
         const json = await data.json();
 
+        //URL AQI
+        const aqiUrl = `${api.baseUrl}/air_pollution?lat=${json.coord.lat}&lon=${json.coord.lon}&appid=${api.key}`;
+        // const aqiUrl = `${api.baseUrl}/air_pollution?lat={lat}&lon={lon}&appid={API key}`;
+
+        const dataAqi = await fetch(aqiUrl);
+        const aqi = await dataAqi.json();
+        console.log(aqi);
         setLocations(locations => {
           let weatherDes = json?.weather[0]?.description;
 
@@ -99,6 +106,9 @@ export default function Home({navigation}) {
               windSpeed: json?.wind?.speed,
               humidity: json?.main?.humidity,
               pressure: `${json?.main.pressure / 1000}`,
+              // aqi: aqi.data.current.pollution.aqius,
+              aqi: aqi?.list[0]?.main?.aqi,
+              PM10: aqi?.list[0]?.components?.pm10,
             },
           ];
         });

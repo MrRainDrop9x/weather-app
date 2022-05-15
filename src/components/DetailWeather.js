@@ -12,7 +12,26 @@ export default function DetailWeather({location, navigation}) {
     setWeatherCityCurrent(location);
     navigation.navigate('Info');
   };
-
+  let aqiDes = '';
+  switch (location.aqi) {
+    case 1:
+      aqiDes = 'Tốt';
+      break;
+    case 2:
+      aqiDes = 'Trung bình';
+      break;
+    case 3:
+      aqiDes = 'Kém';
+      break;
+    case 4:
+      aqiDes = 'Xấu';
+      break;
+    case 5:
+      aqiDes = 'Rất xấu';
+      break;
+    default:
+      break;
+  }
   return (
     <View style={styles.wrapperDetail}>
       <View>
@@ -22,6 +41,28 @@ export default function DetailWeather({location, navigation}) {
             <Right name="right" size={14} color="#208df8" />
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.wrapperInfo}>
+        <View style={styles.info}>
+          <View style={styles.info_item}>
+            <Text style={[styles.main]}>
+              {`${location.aqi}`}
+              <Text style={{fontSize: 12}}> {`(${aqiDes})`}</Text>
+            </Text>
+            <Text style={styles.sub}>{`AQI`}</Text>
+          </View>
+          <View style={styles.info_item}>
+            <Text
+              style={[
+                styles.main,
+                {textAlign: 'right'},
+              ]}>{`${location.PM10}`}</Text>
+            <Text style={styles.sub}>
+              PM
+              <Text style={{fontSize: 10}}>10</Text>
+            </Text>
+          </View>
+        </View>
       </View>
       <View style={styles.wrapperInfo}>
         <View style={styles.info}>
