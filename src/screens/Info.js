@@ -32,24 +32,16 @@ export default function Info({navigation}) {
     <View style={styles.container}>
       <LinearGradient
         colors={[
-          'rgba(71, 191, 223, 1)',
-          'rgba(74, 155, 248, 1)',
-          'rgba(74, 152, 250, 1)',
-          'rgba(74, 152, 250, 1)',
-          'rgba(74, 152, 250, 1)',
-          'rgba(74, 145, 255, 1)',
+          // 'rgba(162, 162, 162, 1)',
+          'rgba(255, 255, 225, 1)',
+          'rgba(245, 213, 255, 1)',
+          'rgba(0, 0, 0, 1)',
+          // 'rgba(74, 155, 248, .8)',
+          // 'rgba(74, 152, 250, 1)',
+          // 'rgba(74, 152, 250, 1)',
+          // 'rgba(74, 152, 250, 1)',
         ]}
         style={styles.background}>
-        <View style={styles.backHome}>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => navigation.navigate('Home')}
-            style={styles.backBtn}>
-            <MaterialIcons name="arrow-back-ios" size={24} color="#fff" />
-            <Text style={styles.titleBack}>Quay lại</Text>
-          </TouchableOpacity>
-          <MaterialIcons name="settings" size={24} color="#fff" />
-        </View>
         <View>
           <View style={styles.title}>
             <Text style={styles.textMain}>Hôm nay</Text>
@@ -107,7 +99,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundImage: 'linear-gradient(#47BFDF,#4A91FF)',
   },
   background: {
     position: 'absolute',

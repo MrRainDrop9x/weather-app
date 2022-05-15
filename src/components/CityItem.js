@@ -28,12 +28,10 @@ import DetailWeather from './DetailWeather';
 //   }
 // };
 
-const CityItem = ({location, bgImg, loadData,navigation}) => {
+const CityItem = ({location, bgImg, loadData, navigation}) => {
   const {weatherCityCurrent, setTrackedCityList, dtToHour, roundTemp} =
     useGlobalContext();
   const {width: windowWidth, height: windowHeight} = useWindowDimensions();
-  
-  
 
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(async () => {
@@ -46,7 +44,6 @@ const CityItem = ({location, bgImg, loadData,navigation}) => {
   }, []);
   return (
     <ScrollView
-    
       nestedScrollEnabled
       refreshControl={
         <RefreshControl
@@ -57,7 +54,7 @@ const CityItem = ({location, bgImg, loadData,navigation}) => {
       }>
       <View style={{width: windowWidth, height: windowHeight}}>
         <ImageBackground
-        resizeMode="cover" 
+          resizeMode="cover"
           source={bgImg}
           style={{
             flex: 1,
@@ -111,16 +108,25 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'Lato-Regular',
     fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, .3)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
   time: {
     color: '#fff',
     fontFamily: 'Lato-Regular',
     fontWeight: 'bold',
+    textShadowColor: 'rgba(0, 0, 0, .2)',
+    textShadowOffset: {width: -2, height: 2},
+    textShadowRadius: 1,
   },
   temparature: {
     color: '#fff',
     fontFamily: 'Lato-Light',
-    fontSize: 60,
+    fontSize: 75,
+    textShadowColor: 'rgba(0, 0, 0, .1)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
   weatherDes: {
     color: '#fff',
@@ -130,6 +136,9 @@ const styles = StyleSheet.create({
     lineHeight: 34,
     textAlign: 'right',
     textTransform: 'capitalize',
+    textShadowColor: 'rgba(0, 0, 0, .1)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
   bottomInfoWrapper: {
     flexDirection: 'row',

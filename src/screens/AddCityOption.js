@@ -84,7 +84,7 @@ export default function AddCityOption({navigation}) {
       }
     } else {
       ToastAndroid.showWithGravity(
-        `Không tìm thấy thời tiết về ${city}!!`,
+        [p]`Không tìm thấy thời tiết về ${city}!!`,
         ToastAndroid.SHORT,
         ToastAndroid.TOP,
       );
@@ -150,7 +150,6 @@ export default function AddCityOption({navigation}) {
         ToastAndroid.TOP,
       );
     }
-
     goHome();
     console.log(pos);
   };

@@ -26,20 +26,6 @@ export default function DetailWeather({location, navigation}) {
       <View style={styles.wrapperInfo}>
         <View style={styles.info}>
           <View style={styles.info_item}>
-            <Text style={[styles.main]}>{`${location.temparature}`}</Text>
-            <Text style={styles.sub}>độ C nhiệt độ</Text>
-          </View>
-          <View style={styles.info_item}>
-            <Text
-              style={[
-                styles.main,
-                {textAlign: 'right'},
-              ]}>{`${location.temparature}`}</Text>
-            <Text style={styles.sub}>Độ hiển thị</Text>
-          </View>
-        </View>
-        <View style={styles.info}>
-          <View style={styles.info_item}>
             <Text style={styles.main}>
               {`${location.windSpeed} `}
               <Text style={{fontSize: 15}}>km/h</Text>
@@ -83,30 +69,40 @@ const styles = StyleSheet.create({
     fontFamily: font,
     fontSize: 15,
     fontWeight: 'bold',
-    textShadowOffset: {
-      width: 10,
-      height: 10,
-    },
-    textShadowColor: 'red',
   },
   wrapperInfo: {
     width: 300,
     paddingHorizontal: 20,
+    textShadowColor: 'rgba(0, 0, 0, .1)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
   info: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    textShadowColor: 'rgba(0, 0, 0, .1)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
   info_item: {
     marginTop: 20,
+    textShadowColor: 'rgba(0, 0, 0, .1)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
   main: {
     fontSize: 22,
     color: '#fff',
     marginBottom: 2,
+    textShadowColor: 'rgba(0, 0, 0, .1)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
   sub: {
     color: 'rgba(255,255,255,0.7)',
+    textShadowColor: 'rgba(0, 0, 0, .1)',
+    textShadowOffset: {width: -2, height: 3},
+    textShadowRadius: 1,
   },
 });
