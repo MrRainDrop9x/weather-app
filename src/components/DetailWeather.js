@@ -5,10 +5,11 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useGlobalContext} from '../../globalContext';
 
 export default function DetailWeather({location, navigation}) {
-  const {setWeatherCityCurrent, setIsLoading} = useGlobalContext();
+  const {setWeatherCityCurrent, setIsLoading, weatherCityCurrent} =
+    useGlobalContext();
 
   const goInfo = () => {
-    setIsLoading(true);
+    if (location != weatherCityCurrent) setIsLoading(true);
     setWeatherCityCurrent(location);
     navigation.navigate('Info');
   };

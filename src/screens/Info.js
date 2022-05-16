@@ -32,14 +32,12 @@ export default function Info({navigation}) {
     <View style={styles.container}>
       <LinearGradient
         colors={[
-          // 'rgba(162, 162, 162, 1)',
-          'rgba(255, 255, 225, 1)',
-          'rgba(245, 213, 255, 1)',
-          'rgba(0, 0, 0, 1)',
-          // 'rgba(74, 155, 248, .8)',
-          // 'rgba(74, 152, 250, 1)',
-          // 'rgba(74, 152, 250, 1)',
-          // 'rgba(74, 152, 250, 1)',
+          'rgba(71, 191, 223, 1)',
+          'rgba(74, 155, 248, 1)',
+          'rgba(74, 152, 250, 1)',
+          'rgba(74, 152, 250, 1)',
+          'rgba(74, 152, 250, 1)',
+          'rgba(74, 145, 255, 1)',
         ]}
         style={styles.background}>
         <View>
@@ -136,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 30,
     color: '#FFF',
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {width: -2, height: 3},
     textShadowRadius: 1,
   },
@@ -146,7 +144,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 23,
     color: '#FFF',
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {width: -2, height: 3},
     textShadowRadius: 1,
   },
@@ -170,7 +168,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 23,
     color: '#FFF',
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {width: -2, height: 3},
     textShadowRadius: 1,
   },

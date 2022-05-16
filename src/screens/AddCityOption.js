@@ -166,7 +166,7 @@ export default function AddCityOption({navigation}) {
       </View>
 
       <View style={styles.searchBox}>
-        <Ionicons name="search" size={28} color="#777" />
+        <Ionicons name="search" size={28} color="#777" style={{fontSize: 15}} />
         <TextInput
           style={styles.input}
           placeholder="Tìm kiếm bằng ngôn ngữ hiện tại"
@@ -222,25 +222,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 16,
+    position: 'relative',
   },
   textDelete: {
-    marginRight: 45,
+    marginLeft: 12,
     fontWeight: '600',
     color: '#0969da',
+    fontSize: 15,
   },
   textTitle: {
     fontSize: 18,
     fontWeight: '600',
     color: '#000',
+    position: 'absolute',
+    left: '50%',
+    transform: [{translateX: -60}],
   },
 
   searchBox: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#ccc',
-    borderRadius: 18,
-    paddingHorizontal: 8,
+    backgroundColor: 'rgba(200,200,200,0.3)',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    height: 40,
+  },
+  input: {
+    fontSize: 14,
   },
 
   boxCities: {
@@ -250,6 +259,9 @@ const styles = StyleSheet.create({
   },
   titleCities: {
     paddingBottom: 4,
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginBottom: 10,
   },
 
   scrollViewStyle: {

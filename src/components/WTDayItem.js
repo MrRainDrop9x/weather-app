@@ -5,7 +5,6 @@ export default function WTDayItem({dateTime, img, temperature}) {
   return (
     <View style={styles.container}>
       <Text style={styles.dateTime}>{`${dateTime}`}</Text>
-      {/* <CloudAndSun width={50} height={44} /> */}
       <Image
         style={styles.weatherImg}
         source={{
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 23,
     color: '#FFF',
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {width: -2, height: 3},
     textShadowRadius: 1,
   },
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 23,
     color: '#FFF',
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
     textShadowOffset: {width: -2, height: 3},
     textShadowRadius: 1,
   },

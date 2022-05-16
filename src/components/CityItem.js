@@ -8,8 +8,6 @@ import {
 import React, {useState, useCallback} from 'react';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
 import {useGlobalContext} from '../../globalContext';
-import WTHourItem from '../components/WTHourItem';
-import WeatherDayItem from './WeatherDayItem';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import DetailWeather from './DetailWeather';
 
