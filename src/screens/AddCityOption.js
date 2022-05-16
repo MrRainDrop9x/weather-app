@@ -69,6 +69,7 @@ export default function AddCityOption({navigation}) {
         firestore().collection('weatherCurrent').add({
           nameCity: data.name,
           createAt: firestore.FieldValue.serverTimestamp(),
+          temp: data.main.temp,
         });
         ToastAndroid.showWithGravity(
           `Thêm thời tiết tại thành phố ${data.name}!!`,
@@ -129,6 +130,7 @@ export default function AddCityOption({navigation}) {
         firestore().collection('weatherCurrent').add({
           nameCity: data.name,
           createAt: firestore.FieldValue.serverTimestamp(),
+          temp: data.main.temp,
         });
 
         ToastAndroid.showWithGravity(

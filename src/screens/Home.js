@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Animated,
   LogBox,
+  NativeModules
 } from 'react-native';
 
 import MenuIcon from '../../assets/menu.svg';
@@ -21,6 +22,8 @@ import CityItem from '../components/CityItem';
 import Loading from './Loading';
 import EmptyScreen from './EmptyScreen';
 import {useGlobalContext} from '../../globalContext';
+
+const SharedStorage = NativeModules.SharedStorage;
 
 export default function Home({navigation}) {
   const {
@@ -47,6 +50,7 @@ export default function Home({navigation}) {
             return {
               nameCity: doc.data().nameCity,
               createAt: doc.data().createAt,
+              temp: doc.data().temp,
               id: doc.id,
             };
           }),
@@ -56,6 +60,10 @@ export default function Home({navigation}) {
   useEffect(() => {
     getTrackedCityList();
   }, []);
+
+  const handleWidget = () => {
+    SharedStorage.set(JSON.stringify({ text: trackedCityList[0]?.nameCity, temp: `${trackedCityList[0]?.temp}°C` }))
+  }
 
   const loadData = () => {
     setLocations([]);
@@ -124,6 +132,7 @@ export default function Home({navigation}) {
 
   useEffect(() => {
     loadData();
+    handleWidget();
   }, [trackedCityList]);
 
   LogBox.ignoreLogs(['ViewPropTypes will be removed from React Native']);

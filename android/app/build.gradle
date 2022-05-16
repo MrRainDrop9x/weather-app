@@ -129,6 +129,10 @@ def reactNativeArchitectures() {
 }
 
 android {
+
+    buildFeatures {
+        viewBinding true
+    }
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
