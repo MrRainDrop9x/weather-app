@@ -17,7 +17,6 @@ import React from 'react';
 import {useRef, useEffect} from 'react';
 import useWindowDimensions from 'react-native/Libraries/Utilities/useWindowDimensions';
 import firestore from '@react-native-firebase/firestore';
-import {ScrollView} from 'react-native-gesture-handler';
 import CityItem from '../components/CityItem';
 import Loading from './Loading';
 import EmptyScreen from './EmptyScreen';
@@ -75,7 +74,7 @@ export default function Home({navigation}) {
 
         const dataAqi = await fetch(aqiUrl);
         const aqi = await dataAqi.json();
-        console.log(aqi);
+
         setLocations(locations => {
           let weatherDes = json?.weather[0]?.description;
 
@@ -149,7 +148,7 @@ export default function Home({navigation}) {
     <>
       <StatusBar barStyle="light-content" />
       {trackedCityList.length > 0 ? (
-        <ScrollView
+        <Animated.ScrollView
           horizontal
           pagingEnabled
           showsHorizontalScrollIndicator={false}
@@ -197,7 +196,7 @@ export default function Home({navigation}) {
               />
             );
           })}
-        </ScrollView>
+        </Animated.ScrollView>
       ) : (
         <EmptyScreen navigation={navigation} />
       )}
