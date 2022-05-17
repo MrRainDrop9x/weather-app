@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, TouchableOpacity, LogBox} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CityOfList from '../components/CityOfList';
 import {useGlobalContext} from '../../globalContext';
