@@ -11,8 +11,11 @@ import {useGlobalContext} from '../../globalContext';
 import firestore from '@react-native-firebase/firestore';
 
 export default function EditCityOption({navigation}) {
+  const {trackedCityList, setLocations} = useGlobalContext();
+
   const goListCity = () => {
-    navigation.navigate('ListCity');
+    setLocations([]);
+    navigation.navigate('Home');
 
     citiesVietNam.forEach(city => {
       if (city.checked) {
@@ -24,7 +27,6 @@ export default function EditCityOption({navigation}) {
     setCitiesVietNam(citiesVietNam.map(city => ({...city, checked: false})));
   };
 
-  const {trackedCityList} = useGlobalContext();
 
   const initCities = trackedCityList.map(item => ({
     id: item.id,
