@@ -22,8 +22,9 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:contentDescription="@string/fuck"
             android:id="@+id/appwidget_icon_weather"
-            android:layout_width="85dp"
+            android:layout_width="141dp"
             android:layout_height="65dp"
             android:background="@drawable/gradient_background"
             android:src="@drawable/img_10d" />
@@ -31,8 +32,8 @@
         <TextView
             android:id="@+id/appwidget_text_temp"
             style="@style/Widget.Weather.AppWidget.InnerView"
-            android:layout_width="89dp"
-            android:layout_height="65dp"
+            android:layout_width="118dp"
+            android:layout_height="match_parent"
             android:background="@drawable/gradient_background"
             android:contentDescription="@string/appwidget_text_temp"
             android:gravity="center"
