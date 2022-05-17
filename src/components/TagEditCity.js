@@ -16,16 +16,16 @@ export default function TagEditCity({
   // let check = citiesVietNam.find(city => city?.id === id)[0]?.;
 
   const handleChecked = () => {
-    changeValue(citiesVietNam.map(city => {
-      if (city?.id === id) {
-        return {...city, checked: !check}
-      }
-      return {...city}
-    }));
+    changeValue(
+      citiesVietNam.map(city => {
+        if (city?.id === id) {
+          return {...city, checked: !check};
+        }
+        return {...city};
+      }),
+    );
 
     setCheck(!check);
-
-    // console.log(citiesVietNam);
   };
 
   return (
@@ -47,11 +47,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+
   text: {
     fontSize: 18,
     paddingVertical: 4,
     color: '#000',
   },
+
   checkbox: {
     alignSelf: 'center',
   },

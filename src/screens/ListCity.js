@@ -59,12 +59,6 @@ export default function ListCity({navigation}) {
           <TouchableOpacity
             activeOpacity={0.8}
             style={styles.icon}
-            onPress={goAddCityOption}>
-            <AntDesign name="plus" size={22} color="#0969da" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            style={styles.icon}
             onPress={goEditCityOption}>
             <AntDesign name="edit" size={22} color="#0969da" />
           </TouchableOpacity>

@@ -8,7 +8,7 @@ import {
 import React, {useState} from 'react';
 import TagEditCity from '../components/TagEditCity';
 import {useGlobalContext} from '../../globalContext';
-import firestore from "@react-native-firebase/firestore";
+import firestore from '@react-native-firebase/firestore';
 
 export default function EditCityOption({navigation}) {
   const goListCity = () => {
@@ -16,16 +16,12 @@ export default function EditCityOption({navigation}) {
 
     citiesVietNam.forEach(city => {
       if (city.checked) {
-        firestore().collection('weatherCurrent')
-          .doc(city.id)
-          .delete();
+        firestore().collection('weatherCurrent').doc(city.id).delete();
         // console.log(city);
       }
-    })
+    });
 
-    setCitiesVietNam(
-      citiesVietNam.map(city => ({...city, checked: false})),
-    );
+    setCitiesVietNam(citiesVietNam.map(city => ({...city, checked: false})));
   };
 
   const {trackedCityList} = useGlobalContext();
@@ -39,10 +35,8 @@ export default function EditCityOption({navigation}) {
   const [citiesVietNam, setCitiesVietNam] = useState(initCities);
 
   const checkAll = () => {
-    setCitiesVietNam(
-      citiesVietNam.map(city => ({...city, checked: true})),
-    );
-  }
+    setCitiesVietNam(citiesVietNam.map(city => ({...city, checked: true})));
+  };
 
   return (
     <View style={styles.container}>
@@ -50,13 +44,24 @@ export default function EditCityOption({navigation}) {
         <TouchableOpacity activeOpacity={0.65} onPress={goListCity}>
           <Text style={styles.textDelete}>Xong</Text>
         </TouchableOpacity>
-        <Text style={styles.textTitle}>Chọn thẻ thời tiết</Text>
-        <TouchableOpacity activeOpacity={0.65} onPress={checkAll}>
-          <Text style={styles.textDelete}>Chọn tất cả</Text>
+        <View>
+          <Text style={[styles.textTitle, {marginLeft: 20}]}>
+            Chọn thẻ thời tiết
+          </Text>
+        </View>
+        <TouchableOpacity
+          activeOpacity={0.65}
+          onPress={checkAll}
+          style={{
+            alignSelf: 'center',
+          }}>
+          <Text style={[styles.textDelete, {marginRight: -65}]}>
+            Chọn tất cả
+          </Text>
         </TouchableOpacity>
         <View style={styles.titleBox}></View>
       </View>
-      <ScrollView>
+      <ScrollView style={{marginRight: 12}}>
         {citiesVietNam.map((city, index) => (
           <TagEditCity
             key={index}
@@ -75,7 +80,6 @@ export default function EditCityOption({navigation}) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingBottom: 120,
   },
   header: {
     display: 'flex',
@@ -92,14 +96,14 @@ const styles = StyleSheet.create({
   },
   textDelete: {
     fontSize: 14,
-    // marginRight: 18,
     fontWeight: '600',
     color: '#0969da',
   },
   textTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
     color: '#000',
+    alignSelf: 'center',
   },
 
   titleBox: {},

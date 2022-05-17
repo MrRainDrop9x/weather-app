@@ -48,7 +48,7 @@ export default function AddCityOption({navigation}) {
   };
 
   const handleInfoCity = async city => {
-    console.log(city);
+    // console.log(city);
     // console.log(trackedCityList);
 
     const url = `${api.baseUrl}/weather?q=${city}&units=metric&appid=${api.key}&lang=vi`;
@@ -153,9 +153,13 @@ export default function AddCityOption({navigation}) {
       );
     }
     goHome();
-    console.log(pos);
+    // console.log(pos);
   };
-
+  const isTracked = nameCity => {
+    return trackedCityList.find(e => {
+      return e.nameCity === nameCity;
+    });
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -179,33 +183,40 @@ export default function AddCityOption({navigation}) {
       <ScrollView style={styles.scrollViewStyle}>
         <View style={styles.boxCities}>
           <Text style={styles.titleCities}>Thành phố hàng đầu</Text>
-          <TagTrendCity
-            present
-            nameCity={'Vị trí'}
-            checkPos={() => {
-              Geolocation.getCurrentPosition(pos => {
-                handlePostionCity(pos?.coords);
-              });
-            }}
-          />
-          {citiesVietNam.map((city, index) => (
+          <View style={styles.wrapper}>
             <TagTrendCity
-              key={index}
-              nameCity={city}
-              handleFunc={fetchDataHandleClick}
+              present
+              nameCity={'Vị trí'}
+              checkPos={() => {
+                Geolocation.getCurrentPosition(pos => {
+                  handlePostionCity(pos?.coords);
+                });
+              }}
+              isTracked
             />
-          ))}
+            {citiesVietNam.map((city, index) => (
+              <TagTrendCity
+                key={index}
+                nameCity={city}
+                handleFunc={fetchDataHandleClick}
+                isTracked={isTracked(city)}
+              />
+            ))}
+          </View>
         </View>
 
         <View style={styles.boxCities}>
           <Text style={styles.titleCities}>Thành phố hàng đầu - Thế giới</Text>
-          {citiesWorld.map((city, index) => (
-            <TagTrendCity
-              key={index}
-              nameCity={city}
-              handleFunc={fetchDataHandleClick}
-            />
-          ))}
+          <View style={styles.wrapper}>
+            {citiesWorld.map((city, index) => (
+              <TagTrendCity
+                key={index}
+                nameCity={city}
+                handleFunc={fetchDataHandleClick}
+                isTracked={isTracked(city)}
+              />
+            ))}
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -257,6 +268,13 @@ const styles = StyleSheet.create({
     paddingRight: -4,
     paddingTop: 18,
   },
+
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+
   titleCities: {
     paddingBottom: 4,
     fontWeight: 'bold',
