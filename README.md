@@ -8,4 +8,4 @@
 ### Details information
 ### ListCity
 ### Loading animation
-![Loading](https://github.com/MrRainDrop9x/weather-app/blob/master/assets/loading.json)
+![Loading](https://lottiefiles.com/76622-weather)
