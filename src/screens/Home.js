@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Animated,
   LogBox,
-  NativeModules
+  NativeModules,
 } from 'react-native';
 
 import MenuIcon from '../../assets/menu.svg';
@@ -51,6 +51,7 @@ export default function Home({navigation}) {
               nameCity: doc.data().nameCity,
               createAt: doc.data().createAt,
               temp: doc.data().temp,
+              icon: doc.data().icon,
               id: doc.id,
             };
           }),
@@ -62,8 +63,14 @@ export default function Home({navigation}) {
   }, []);
 
   const handleWidget = () => {
-    SharedStorage.set(JSON.stringify({ text: trackedCityList[0]?.nameCity, temp: `${trackedCityList[0]?.temp}°C` }))
-  }
+    SharedStorage.set(
+      JSON.stringify({
+        text: trackedCityList[0]?.nameCity,
+        temp: `${trackedCityList[0]?.temp}°C`,
+        icon: trackedCityList[0]?.icon,
+      }),
+    );
+  };
 
   const loadData = () => {
     setLocations([]);

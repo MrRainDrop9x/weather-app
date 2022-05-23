@@ -70,6 +70,7 @@ export default function AddCityOption({navigation}) {
           nameCity: data.name,
           createAt: firestore.FieldValue.serverTimestamp(),
           temp: data.main.temp,
+          icon: data.weather[0].icon,
         });
         ToastAndroid.showWithGravity(
           `Thêm thời tiết tại thành phố ${data.name}!!`,

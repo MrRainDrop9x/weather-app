@@ -1,45 +1,49 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.Weather.AppWidget.Container"
+    android:id="@+id/go_to_activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:theme="@style/AppTheme.AppWidgetContainer">
+    android:layout_height="wrap_content"
+    android:theme="@style/AppTheme.AppWidgetContainer"
+    android:orientation="horizontal"
+    android:background="@drawable/border_bg"
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/appwidget_text_city"
             style="@style/Widget.Weather.AppWidget.InnerView"
-            android:layout_width="123dp"
-            android:layout_height="65dp"
-            android:background="@drawable/gradient_background"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:contentDescription="@string/appwidget_text_city"
+            android:background="@android:color/transparent"
             android:gravity="center"
             android:text="@string/appwidget_text_city"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:contentDescription="@string/fuck"
             android:id="@+id/appwidget_icon_weather"
-            android:layout_width="141dp"
-            android:layout_height="65dp"
-            android:background="@drawable/gradient_background"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/fuck"
             android:src="@drawable/img_10d" />
 
         <TextView
             android:id="@+id/appwidget_text_temp"
             style="@style/Widget.Weather.AppWidget.InnerView"
-            android:layout_width="118dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/gradient_background"
             android:contentDescription="@string/appwidget_text_temp"
+            android:background="@android:color/transparent"
             android:gravity="center"
             android:text="@string/appwidget_text_temp"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
-</RelativeLayout>
+
+</LinearLayout>
