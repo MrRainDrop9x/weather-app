@@ -27,7 +27,6 @@ export default function EditCityOption({navigation}) {
     setCitiesVietNam(citiesVietNam.map(city => ({...city, checked: false})));
   };
 
-
   const initCities = trackedCityList.map(item => ({
     id: item.id,
     name: item.nameCity,
@@ -35,9 +34,16 @@ export default function EditCityOption({navigation}) {
   }));
 
   const [citiesVietNam, setCitiesVietNam] = useState(initCities);
-
+  const [isCheckAll, setIsCheckAll] = useState(false);
   const checkAll = () => {
-    setCitiesVietNam(citiesVietNam.map(city => ({...city, checked: true})));
+    setCitiesVietNam(
+      citiesVietNam.map(city => {
+        if (isCheckAll) {
+          return {...city, checked: false};
+        }
+        return {...city, checked: true};
+      }),
+    );
   };
 
   return (
@@ -53,12 +59,17 @@ export default function EditCityOption({navigation}) {
         </View>
         <TouchableOpacity
           activeOpacity={0.65}
-          onPress={checkAll}
           style={{
             alignSelf: 'center',
+            width: 10,
           }}>
-          <Text style={[styles.textDelete, {marginRight: -65}]}>
-            Chọn tất cả
+          <Text
+            onPress={() => {
+              setIsCheckAll(!isCheckAll);
+              checkAll();
+            }}
+            style={[styles.textDelete, {marginRight: -65}]}>
+            {!isCheckAll ? 'Chọn tất cả' : 'Hủy tất cả'}
           </Text>
         </TouchableOpacity>
         <View style={styles.titleBox}></View>

@@ -50,7 +50,7 @@ export default function DetailWeather({location, navigation}) {
               {`${location.aqi}`}
               <Text style={{fontSize: 12}}> {`(${aqiDes})`}</Text>
             </Text>
-            <Text style={styles.sub}>{`AQI`}</Text>
+            <Text style={[styles.sub, {textAlign: 'left'}]}>{`AQI`}</Text>
           </View>
           <View style={styles.info_item}>
             <Text
@@ -72,7 +72,7 @@ export default function DetailWeather({location, navigation}) {
               {`${location.windSpeed} `}
               <Text style={{fontSize: 15}}>km/h</Text>
             </Text>
-            <Text style={styles.sub}>Tốc độ gió</Text>
+            <Text style={[styles.sub, {textAlign: 'left'}]}>Tốc độ gió</Text>
           </View>
           <View style={styles.info_item}>
             <View>
@@ -146,5 +146,6 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, .1)',
     textShadowOffset: {width: -2, height: 3},
     textShadowRadius: 1,
+    textAlign: 'right',
   },
 });
