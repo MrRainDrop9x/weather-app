@@ -158,7 +158,8 @@ export default function AddCityOption({navigation}) {
   };
   const isTracked = nameCity => {
     return trackedCityList.find(e => {
-      return e.nameCity === nameCity;
+      
+      return e.nameCity.includes(nameCity);
     });
   };
   return (
