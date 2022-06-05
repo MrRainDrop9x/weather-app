@@ -5,26 +5,46 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState,useRef} from 'react';
 import TagEditCity from '../components/TagEditCity';
 import {useGlobalContext} from '../../globalContext';
 import firestore from '@react-native-firebase/firestore';
 
 export default function EditCityOption({navigation}) {
-  const {trackedCityList, setLocations} = useGlobalContext();
-
-  const goListCity = () => {
-    setLocations([]);
-    navigation.navigate('Home');
-
-    citiesVietNam.forEach(city => {
+  const {trackedCityList, setLocations,setIsLoading} = useGlobalContext();
+  let lengthOfTrackList = useRef(trackedCityList.length).current
+  
+  const goListCity = async() => {
+    let arr = {}
+    let sum = 0
+    await citiesVietNam.forEach(city => {
       if (city.checked) {
+        arr[city.id] = city.id
         firestore().collection('weatherCurrent').doc(city.id).delete();
-        // console.log(city);
+        ++sum;
       }
     });
 
-    setCitiesVietNam(citiesVietNam.map(city => ({...city, checked: false})));
+    // console.log(arr);
+    await trackedCityList.filter((item) => {
+
+      return !arr[item.id]
+    })
+    
+    lengthOfTrackList -= sum
+    console.log(lengthOfTrackList-sum);
+    console.log(trackedCityList.length);
+    if(lengthOfTrackList != trackedCityList.length) {
+      console.log('asdasdasd');
+      lengthOfTrackList = trackedCityList.length
+      setIsLoading(true)
+      setCitiesVietNam(citiesVietNam.map(city => ({...city, checked: false})));
+    }
+    
+
+    // await setIsLoading(false)
+    navigation.navigate('Home');
+
   };
 
   const initCities = trackedCityList.map(item => ({
