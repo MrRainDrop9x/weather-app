@@ -200,6 +200,8 @@ export default function Home({navigation}) {
               bgImg = require('../../assets/gif/fog.gif');
             } else if (location.weatherType === 'Drizzle') {
               bgImg = require('../../assets/gif/rain.gif');
+            } else {
+              bgImg = require('../../assets/gif/clear.gif');
             }
 
             return (

@@ -59,12 +59,12 @@ export default function AddCityOption({navigation}) {
       let arrTrackedCityList = [...trackedCityList];
 
       if (!arrTrackedCityList.find(city => city?.nameCity === data.name)) {
-        if (arrTrackedCityList.length >= 3) {
-          firestore()
-            .collection('weatherCurrent')
-            .doc(arrTrackedCityList[2].id)
-            .delete();
-        }
+        // if (arrTrackedCityList.length >= 3) {
+        //   firestore()
+        //     .collection('weatherCurrent')
+        //     .doc(arrTrackedCityList[2].id)
+        //     .delete();
+        // }
 
         firestore().collection('weatherCurrent').add({
           nameCity: data.name,
@@ -121,12 +121,7 @@ export default function AddCityOption({navigation}) {
     let arrTrackedCityList = [...trackedCityList];
     if (!arrTrackedCityList.find(city => city?.nameCity === data.name)) {
       if (data.cod === 200) {
-        if (arrTrackedCityList.length >= 4) {
-          firestore()
-            .collection('weatherCurrent')
-            .doc(arrTrackedCityList[3].id)
-            .delete();
-        }
+        
 
         firestore().collection('weatherCurrent').add({
           nameCity: data.name,
