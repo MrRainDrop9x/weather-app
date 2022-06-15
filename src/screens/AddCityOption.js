@@ -121,8 +121,6 @@ export default function AddCityOption({navigation}) {
     let arrTrackedCityList = [...trackedCityList];
     if (!arrTrackedCityList.find(city => city?.nameCity === data.name)) {
       if (data.cod === 200) {
-        
-
         firestore().collection('weatherCurrent').add({
           nameCity: data.name,
           createAt: firestore.FieldValue.serverTimestamp(),
@@ -152,8 +150,22 @@ export default function AddCityOption({navigation}) {
     // console.log(pos);
   };
   const isTracked = nameCity => {
+    if (nameCity === 'Moscow') {
+      return trackedCityList.find(e => {
+        return e.nameCity.includes('Mát-xcơ-va');
+      });
+    }
+    if (nameCity === 'London') {
+      return trackedCityList.find(e => {
+        return e.nameCity.includes('Luân Đôn');
+      });
+    }
+    if (nameCity === 'Beijing') {
+      return trackedCityList.find(e => {
+        return e.nameCity.includes('Bắc Kinh');
+      });
+    }
     return trackedCityList.find(e => {
-      
       return e.nameCity.includes(nameCity);
     });
   };
